@@ -17,19 +17,18 @@ def can_exit(input_lst: list) -> bool:
     Returns:
         True - если проход есть, False - если прохода нет.
     """
-    n, m = len(input_lst), len(input_lst[0])
+    height, width = len(input_lst), len(input_lst[0])
     x_start, y_start = 0, 0
-    x_stop, y_stop = m - 1, n - 1
+    x_stop, y_stop = height - 1, width - 1
     x_prev, y_prev = x_start, y_start
     if input_lst[y_start][x_start] == 1:
         return False
-    else:
-        screen = turtle.Screen()
-        screen_settings(screen)
-        draw_labyrinth(input_lst)
-        is_way = find_way_in_labyrinth(x_start, y_start, x_prev, y_prev, x_stop, y_stop, input_lst, screen, [])
-        screen.exitonclick()
-        return is_way
+    screen = turtle.Screen()
+    screen_settings(screen)
+    draw_labyrinth(input_lst)
+    has_way = find_way_in_labyrinth(x_start, y_start, x_prev, y_prev, x_stop, y_stop, input_lst, screen, [])
+    screen.exitonclick()
+    return has_way
 
 
 if __name__ == '__main__':

@@ -1,6 +1,5 @@
 import turtle
 from itertools import product
-
 from constants import SIZE_OF_CELLS
 
 
@@ -11,8 +10,7 @@ def draw_labyrinth(input_lst: list) -> None:
     Args:
         input_lst: список, представляющий лабиринт
     """
-    height = len(input_lst)
-    weight = len(input_lst[0])
+    height, width = len(input_lst), len(input_lst[0])
     turtle.hideturtle()
     turtle.speed('fast')
     turtle.color('black')
