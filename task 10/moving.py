@@ -50,31 +50,31 @@ def find_way_in_labyrinth(x_curr: int, y_curr: int, x_prev: int, y_prev: int, x_
 
         """
     if (x_curr, y_curr) not in past_points:
-        new_turtle = turtle.Turtle()
+        my_turtle = turtle.Turtle()
         past_points.append((x_curr, y_curr))
-        turtle_settings(new_turtle, x_prev, y_prev)
-        new_turtle.goto((x_curr + 1 / 2) * SIZE_OF_CELLS, -1 * (y_curr + 1 / 2) * SIZE_OF_CELLS)
+        turtle_settings(my_turtle, x_prev, y_prev)
+        my_turtle.goto((x_curr + 1 / 2) * SIZE_OF_CELLS, -1 * (y_curr + 1 / 2) * SIZE_OF_CELLS)
         stop_search = False
         while stop_search is False:
-            next_points = find_possible_steps(x_curr, y_curr, past_points, data)
-            if (x_stop, y_stop) in next_points:
-                new_turtle.goto((x_stop + 1 / 2) * SIZE_OF_CELLS,
-                                -1 * (y_stop + 1 / 2) * SIZE_OF_CELLS)
-                new_turtle.color('green')
+            next_cells = find_possible_steps(x_curr, y_curr, past_points, data)
+            if (x_stop, y_stop) in next_cells:
+                my_turtle.goto((x_stop + 1 / 2) * SIZE_OF_CELLS, -1 * (y_stop + 1 / 2) * SIZE_OF_CELLS)
+                my_turtle.color('green')
                 return True
-            if len(next_points) == 1:
-                x_curr, y_curr = next_points[0][0], next_points[0][1]
+            if len(next_cells) == 1:
+                x_curr, y_curr = next_cells[0][0], next_cells[0][1]
                 past_points.append((x_curr, y_curr))
-                new_turtle.goto((x_curr + 1 / 2) * SIZE_OF_CELLS, -1 * (y_curr + 1 / 2) * SIZE_OF_CELLS)
-            elif len(next_points) == 0:
-                new_turtle.color('red')
+                my_turtle.goto((x_curr + 1 / 2) * SIZE_OF_CELLS, -1 * (y_curr + 1 / 2) * SIZE_OF_CELLS)
+            elif len(next_cells) == 0:
+                my_turtle.color('red')
                 return False
             else:
                 results = []
-                for i in reversed(next_points):
-                    new_turtle.hideturtle()
-                    res = find_way_in_labyrinth(i[0], i[1], x_curr, y_curr, x_stop, y_stop, data, screen, past_points)
+                for cell in reversed(next_cells):
+                    my_turtle.hideturtle()
+                    res = find_way_in_labyrinth(cell[0], cell[1], x_curr, y_curr, x_stop, y_stop, data, screen, past_points)
                     results.append(res)
                 stop_search = True
         return True in results
     return False
+
