@@ -17,11 +17,11 @@ def find_possible_steps(coord_x: int, coord_y: int, past_points: list, data: lis
         Список коортежей с координатами ячеек лабиринта, куда можно идти дальше
 
     """
-    height, weight = len(data), len(data[0])
+    height, width = len(data), len(data[0])
     result_list = []
     for delta_x, delta_y in product(range(-1, 2), range(-1, 2)):
         if (
-                0 <= coord_x + delta_x <= weight - 1 and
+                0 <= coord_x + delta_x <= width - 1 and
                 0 <= coord_y + delta_y <= height - 1 and
                 abs(delta_x * delta_y) != 1 and
                 data[coord_y + delta_y][coord_x + delta_x] == 0 and
