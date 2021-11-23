@@ -19,7 +19,7 @@ def can_exit(input_lst: list) -> bool:
     """
     height, width = len(input_lst), len(input_lst[0])
     x_start, y_start = 0, 0
-    x_stop, y_stop = height - 1, width - 1
+    x_stop, y_stop = width - 1, height - 1
     x_prev, y_prev = x_start, y_start
     if input_lst[y_start][x_start] == 1:
         return False
